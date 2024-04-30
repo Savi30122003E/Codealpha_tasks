@@ -1,4 +1,4 @@
-sArtificial Intelligence (AI): Developing algorithms and systems that exhibit human-like intelligence, such as machine learning and natural language processing.
+Artificial Intelligence (AI): Developing algorithms and systems that exhibit human-like intelligence, such as machine learning and natural language processing.
 
 Machine Learning: Creating algorithms and models that enable computers to learn from and make predictions or decisions based on data, without being explicitly programmed.
 
