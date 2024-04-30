@@ -1,1 +1,41 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"mount_file_id":"1I3NXpGrNcrPn6c_dOw1o3IGfujl_clJG","authorship_tag":"ABX9TyNSZ6NymvBdknvlF3T1tBb2"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","source":["import os\n","import shutil\n","\n","# Function to create directories for each file type\n","def organize_files(folder_path):\n","    # Dictionary to map file extensions to their respective directories\n","    file_types = {\n","        'images': ['.jpg', '.jpeg', '.png', '.gif'],\n","        'documents': ['.pdf', '.doc', '.docx', '.txt'],\n","        'videos': ['.mp4', '.avi', '.mkv', '.mov'],\n","        'others': []  # For files with unknown or unsupported extensions\n","    }\n","\n","    # Create directories if they don't exist\n","    for directory in file_types.keys():\n","        if not os.path.exists(os.path.join(folder_path, directory)):\n","            os.makedirs(os.path.join(folder_path, directory))\n","\n","    # Organize files into their respective directories\n","    for filename in os.listdir(folder_path):\n","        if os.path.isfile(os.path.join(folder_path, filename)):\n","            file_extension = os.path.splitext(filename)[1].lower()\n","\n","            # Find the appropriate directory for the file type\n","            destination_directory = 'others'\n","            for key, value in file_types.items():\n","                if file_extension in value:\n","                    destination_directory = key\n","                    break\n","\n","            # Move the file to its respective directory\n","            shutil.move(\n","                os.path.join(folder_path, filename),\n","                os.path.join(folder_path, destination_directory, filename)\n","            )\n","\n","    print(\"Files have been organized successfully!\")\n","\n","# Example usage:\n","folder_to_organize = '/path/to/folder'\n","organize_files(folder_to_organize)"],"metadata":{"id":"y4YJPXiAXyzT","executionInfo":{"status":"ok","timestamp":1714402838993,"user_tz":-330,"elapsed":586,"user":{"displayName":"Savitha E","userId":"12840705642377831900"}},"outputId":"fcb20c67-59b1-48db-a496-3a17006e1276","colab":{"base_uri":"https://localhost:8080/"}},"execution_count":null,"outputs":[{"output_type":"stream","name":"stdout","text":["Files have been organized successfully!\n"]}]}]}
+import os
+import shutil
+
+# Function to create directories for each file type
+def organize_files(folder_path):
+    # Dictionary to map file extensions to their respective directories
+    file_types = {
+        'images': ['.jpg', '.jpeg', '.png', '.gif'],
+        'documents': ['.pdf', '.doc', '.docx', '.txt'],
+        'videos': ['.mp4', '.avi', '.mkv', '.mov'],
+        'others': []  # For files with unknown or unsupported extensions
+    }
+
+    # Create directories if they don't exist
+    for directory in file_types.keys():
+        if not os.path.exists(os.path.join(folder_path, directory)):
+            os.makedirs(os.path.join(folder_path, directory))
+
+    # Organize files into their respective directories
+    for filename in os.listdir(folder_path):
+        if os.path.isfile(os.path.join(folder_path, filename)):
+            file_extension = os.path.splitext(filename)[1].lower()
+
+            # Find the appropriate directory for the file type
+            destination_directory = 'others'
+            for key, value in file_types.items():
+                if file_extension in value:
+                    destination_directory = key
+                    break
+
+            # Move the file to its respective directory
+            shutil.move(
+                os.path.join(folder_path, filename),
+                os.path.join(folder_path, destination_directory, filename)
+            )
+
+    print("Files have been organized successfully!")
+
+# Example usage:
+folder_to_organize = '/path/to/folder'
+organize_files(folder_to_organize)
